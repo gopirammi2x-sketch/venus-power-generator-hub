@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
 });
 
 const genset = gensetAsset.url;
-const nav = [["Home", "#home"], ["About Us", "#about"], ["Generator Range", "#range"], ["Applications", "#applications"], ["Why Choose Us", "#why"], ["Contact", "#contact"]];
+const nav: [string, string][] = [["Home", "#home"], ["About Us", "#about"], ["Generator Range", "#range"], ["Applications", "#applications"], ["Why Choose Us", "#why"], ["Contact", "#contact"]];
 const genericWa = waLink(`Hello ${business.name}, I'd like to enquire about a Cummins generator.`);
 
 const why = [
@@ -39,7 +39,7 @@ const why = [
   [Wrench, "Warranty and After-Sales Support", "Support with warranty matters and service needs after commissioning."],
 ] as const;
 
-const range = [
+const range: [string, string][] = [
   ["15–62.5 kVA", "Shops, clinics, small offices and homes needing compact, quiet backup."],
   ["63–125 kVA", "Mid-size commercial buildings, restaurants, schools and workshops."],
   ["126–250 kVA", "Hotels, hospitals, apartment complexes and light industry."],
