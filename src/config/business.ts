@@ -3,9 +3,9 @@ export const business = {
   name: "Venus Power",
   tagline: "Authorized Dealer — Cummins & Powerica",
   authorizedDealer: true,
-  phoneDisplay: "753752308", // TODO: confirm full 10-digit number
-  phone: "+91753752308",
-  whatsapp: "91753752308", // country code + number, digits only
+  phoneDisplay: "75590 77577",
+  phone: "+917559077577",
+  whatsapp: "917559077577", // country code + number, digits only
   email: "venuscok@gmail.com",
   address: "", // TODO: add office address
   mapsUrl: "", // TODO: Google Maps link
