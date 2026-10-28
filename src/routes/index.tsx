@@ -1,11 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Phone, MessageCircle, Mail, MapPin, Clock, ClipboardList, Gauge, FileText, BookOpen, Truck, Wrench, Factory, Hospital, Building2, Home, HardHat, Laptop, GraduationCap, Warehouse, ChevronDown, ArrowRight } from "lucide-react";
+import { Menu, X, Phone, MessageCircle, Mail, MapPin, Clock, ClipboardList, Gauge, FileText, BookOpen, Truck, Wrench, Factory, Hospital, Building2, Home, HardHat, Laptop, GraduationCap, Warehouse, ArrowRight, User } from "lucide-react";
 import gensetAsset from "@/assets/cummins-genset.jpeg.asset.json";
 import factory from "@/assets/ind-factory.jpg";
 import hospital from "@/assets/ind-hospital.jpg";
 import commercial from "@/assets/ind-commercial.jpg";
 import construction from "@/assets/ind-construction.jpg";
+import apartment from "@/assets/ind-apartment.jpg";
+import itpark from "@/assets/ind-it.jpg";
+import education from "@/assets/ind-education.jpg";
+import warehouse from "@/assets/ind-warehouse.jpg";
+import { Showcase } from "@/components/site/Showcase";
+import { KeralaMap } from "@/components/site/KeralaMap";
 import { business, waLink } from "@/config/business";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 
@@ -39,13 +45,13 @@ const why = [
   [Wrench, "Warranty and After-Sales Support", "Support with warranty matters and service needs after commissioning."],
 ] as const;
 
-const range: [string, string][] = [
-  ["15–62.5 kVA", "Shops, clinics, small offices and homes needing compact, quiet backup."],
-  ["63–125 kVA", "Mid-size commercial buildings, restaurants, schools and workshops."],
-  ["126–250 kVA", "Hotels, hospitals, apartment complexes and light industry."],
-  ["251–500 kVA", "Large commercial facilities, malls and manufacturing units."],
-  ["501–1000 kVA", "Heavy industry, large hospitals and IT campuses."],
-  ["1001–3000 kVA", "Critical infrastructure, data centres and large industrial plants."],
+const range: [string, string, string][] = [
+  ["15–62.5 kVA", "Shops, clinics, small offices, villas, ATMs", "Retailers, doctors, small businesses, homeowners"],
+  ["63–125 kVA", "Restaurants, schools, workshops, mid-size offices", "SMEs, educational trusts, hospitality"],
+  ["126–250 kVA", "Hotels, hospitals, apartment complexes, light industry", "Builders, healthcare groups, hoteliers"],
+  ["251–500 kVA", "Malls, large commercial buildings, manufacturing units", "Developers, factories, retail chains"],
+  ["501–1000 kVA", "Heavy industry, large hospitals, IT campuses", "Industrial groups, IT parks, medical colleges"],
+  ["1001–3000 kVA", "Data centres, process plants, critical infrastructure", "Large industries, utilities, government projects"],
 ];
 
 const industries = [
@@ -53,22 +59,14 @@ const industries = [
   [Hospital, "Hospitals & Healthcare", "Dependable standby power for critical care.", hospital],
   [Building2, "Hotels & Commercial Buildings", "Uninterrupted comfort for guests and tenants.", commercial],
   [HardHat, "Construction & Infrastructure", "Prime power for sites without grid supply.", construction],
-  [Home, "Apartments & Residential", "Backup for lifts, pumps and common areas.", null],
-  [Laptop, "IT Parks & Offices", "Protect servers, networks and workspaces.", null],
-  [GraduationCap, "Educational Institutions", "Power for labs, classrooms and hostels.", null],
-  [Warehouse, "Warehouses & Logistics", "Cold chain and operations kept online.", null],
+  [Home, "Apartments & Residential", "Backup for lifts, pumps and common areas.", apartment],
+  [Laptop, "IT Parks & Offices", "Protect servers, networks and workspaces.", itpark],
+  [GraduationCap, "Educational Institutions", "Power for labs, classrooms and hostels.", education],
+  [Warehouse, "Warehouses & Logistics", "Cold chain and operations kept online.", warehouse],
 ] as const;
 
 const steps = ["Share Your Power Requirements", "Discuss the Application and Load", "Receive a Suitable Recommendation and Quotation", "Coordinate Supply and Installation Support"];
 
-const faqs = [
-  ["How do I calculate the required generator capacity?", "Add up the running wattage of the equipment you need to back up, allow for motor starting currents (which can be several times running current), then convert kW to kVA using the power factor (typically 0.8 for gensets). A margin of around 20–25% is commonly added. We recommend a site assessment for accurate sizing."],
-  ["Which generator capacity is suitable for my business?", "It depends on your connected load, which equipment must stay on during outages, and future expansion plans. Share your load details and we'll suggest suitable options."],
-  ["Do you provide quotations?", "Yes. Send your requirement through the enquiry form or WhatsApp and we'll prepare a quotation based on your needs."],
-  ["Which districts do you serve?", "We handle enquiries from Ernakulam, Thrissur and Palakkad districts in Kerala."],
-  ["What information is required for a quotation?", "Your required capacity (or load list), application, single or three phase supply, installation location, indoor or outdoor placement, and your expected timeline."],
-  ["Which Cummins models are available?", `We work with generators in the ${business.capacityRange} range. Specific model availability, ratings and emission compliance vary, so please contact us for current options.`],
-];
 
 function Index() {
   const [open, setOpen] = useState(false);
@@ -116,6 +114,30 @@ function Index() {
       </header>
 
       <main>
+        <Showcase />
+
+        {/* About — MD message */}
+        <section id="about" className="bg-charcoal text-charcoal-foreground">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-[260px_1fr]">
+            <div className="text-center">
+              <div className="mx-auto grid h-52 w-52 place-items-center overflow-hidden rounded-full border-4 border-primary bg-charcoal-foreground/10">
+                <User className="h-24 w-24 opacity-40" aria-hidden />
+              </div>
+              <p className="mt-4 font-display text-2xl font-bold uppercase">[MD's Name]</p>
+              <p className="text-sm opacity-70">Managing Director, {business.name}</p>
+            </div>
+            <div>
+              <p className="eyebrow">A message from our Managing Director</p>
+              <h2 className="mt-3 text-4xl font-bold uppercase md:text-5xl">Your Local Partner for Reliable Power</h2>
+              <blockquote className="mt-6 space-y-4 border-l-4 border-primary pl-6 text-lg opacity-90">
+                <p>"At {business.name}, we are proud to be an authorized dealer of Cummins and Powerica diesel generators, serving businesses and institutions across Central Kerala."</p>
+                <p>"Every site is different. My team and I take the time to understand your facility, your operating loads and your backup needs, and then recommend the right generator from {business.capacityRange} — with clear quotations and coordinated supply and installation support."</p>
+                <p>"Our promise is simple: dependable power, honest advice and support you can count on."</p>
+              </blockquote>
+            </div>
+          </div>
+        </section>
+
         {/* Hero */}
         <section id="home" className="border-b border-border">
           <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 md:py-20 lg:grid-cols-2">
@@ -153,37 +175,25 @@ function Index() {
           </div>
         </section>
 
-        {/* About */}
-        <section id="about" className="bg-charcoal text-charcoal-foreground">
-          <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 lg:grid-cols-2">
-            <div>
-              <p className="eyebrow">About {business.name}</p>
-              <h2 className="mt-3 text-4xl font-bold uppercase md:text-5xl">Your Local Partner for Reliable Power</h2>
-            </div>
-            <div className="space-y-4 opacity-90">
-              <p>{business.name} is an authorized dealer of Cummins and Powerica diesel generators, helping businesses and institutions across Central Kerala find the right power backup solution.</p>
-              <p>We work with you to understand your facility, operating loads and backup requirements, then recommend generator options from {business.capacityRange} — with clear quotations and coordinated supply and installation support.</p>
-              <p className="rounded-sm border border-dashed border-charcoal-foreground/30 p-4 text-sm opacity-70">[Company history and years of experience — to be added]</p>
-            </div>
-          </div>
-        </section>
-
         {/* Range */}
         <section id="range" className="mx-auto max-w-7xl px-4 py-20">
           <p className="eyebrow">Generator range</p>
           <h2 className="mt-3 text-4xl font-bold uppercase md:text-5xl">Cummins Generator Range</h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">Indicative categories to help you browse. Exact models, ratings, emission compliance and availability are confirmed on enquiry.</p>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {range.map(([k, d]) => (
-              <article key={k} className="group flex flex-col overflow-hidden rounded-sm border border-border bg-card transition hover:-translate-y-1 hover:shadow-lg">
-                <div className="overflow-hidden bg-muted"><img src={genset} alt={`Cummins diesel generator — ${k} category`} loading="lazy" className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105" /></div>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="text-3xl font-bold">{k}</h3>
-                  <p className="mt-2 flex-1 text-sm text-muted-foreground">{d}</p>
-                  <button onClick={() => enquire(k)} className="mt-5 flex items-center gap-2 self-start font-display text-lg font-semibold uppercase tracking-wide text-primary">Enquire Now <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></button>
+          <div className="mt-10 grid items-start gap-8 lg:grid-cols-[2fr_3fr]">
+            <img src={genset} alt="Cummins diesel generator set" loading="lazy" className="w-full rounded-sm object-cover shadow-lg lg:sticky lg:top-24" />
+            <div className="divide-y divide-border overflow-hidden rounded-sm border border-border bg-card">
+              {range.map(([k, apps, seg]) => (
+                <div key={k} className="grid gap-3 p-5 sm:grid-cols-[150px_1fr_auto] sm:items-center">
+                  <h3 className="text-2xl font-bold text-primary">{k}</h3>
+                  <div className="text-sm">
+                    <p><span className="font-semibold">Applications:</span> <span className="text-muted-foreground">{apps}</span></p>
+                    <p className="mt-1"><span className="font-semibold">Customers:</span> <span className="text-muted-foreground">{seg}</span></p>
+                  </div>
+                  <button onClick={() => enquire(k)} className="flex items-center gap-1 font-display font-semibold uppercase tracking-wide text-primary">Enquire <ArrowRight className="h-4 w-4" /></button>
                 </div>
-              </article>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
@@ -193,9 +203,9 @@ function Index() {
             <p className="eyebrow">Applications</p>
             <h2 className="mt-3 text-4xl font-bold uppercase md:text-5xl">Industries We Serve</h2>
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {industries.map(([Icon, t, d, img]) => (
+              {industries.map(([, t, d, img]) => (
                 <div key={t} className="overflow-hidden rounded-sm border border-border bg-card">
-                  {img ? <img src={img} alt={t} loading="lazy" width={1024} height={768} className="aspect-[4/3] w-full object-cover" /> : <div className="grid aspect-[4/3] place-items-center bg-charcoal"><Icon className="h-14 w-14 text-primary" /></div>}
+                  <img src={img} alt={t} loading="lazy" width={1024} height={768} className="aspect-[4/3] w-full object-cover" />
                   <div className="p-5"><h3 className="text-xl font-semibold">{t}</h3><p className="mt-1 text-sm text-muted-foreground">{d}</p></div>
                 </div>
               ))}
@@ -208,15 +218,7 @@ function Index() {
           <p className="eyebrow">Service area</p>
           <h2 className="mt-3 text-4xl font-bold uppercase md:text-5xl">Cummins Generator Enquiries Across Central Kerala</h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">Customers across these districts can enquire about generator selection, quotations and available services.</p>
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {business.districts.map((d) => (
-              <div key={d} className="border-l-4 border-primary bg-card p-7 shadow-sm">
-                <MapPin className="h-7 w-7 text-primary" />
-                <h3 className="mt-3 text-3xl font-bold uppercase">{d} District</h3>
-                <p className="mt-2 text-sm text-muted-foreground">Generator selection, quotations and installation coordination for businesses in {d}.</p>
-              </div>
-            ))}
-          </div>
+          <div className="mt-10"><KeralaMap /></div>
         </section>
 
         {/* Steps */}
@@ -241,22 +243,6 @@ function Index() {
           <p className="eyebrow text-center">Get a quote</p>
           <h2 className="mt-3 text-center text-4xl font-bold uppercase md:text-5xl">Request a Cummins Generator Quotation</h2>
           <div className="mt-10"><EnquiryForm prefillKva={kva} /></div>
-        </section>
-
-        {/* FAQ */}
-        <section className="bg-muted">
-          <div className="mx-auto max-w-3xl px-4 py-20">
-            <p className="eyebrow">FAQ</p>
-            <h2 className="mt-3 text-4xl font-bold uppercase md:text-5xl">Frequently Asked Questions</h2>
-            <div className="mt-8 divide-y divide-border rounded-sm border border-border bg-card">
-              {faqs.map(([q, a]) => (
-                <details key={q} className="group p-5">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">{q}<ChevronDown className="h-5 w-5 shrink-0 transition group-open:rotate-180" /></summary>
-                  <p className="mt-3 text-sm text-muted-foreground">{a}</p>
-                </details>
-              ))}
-            </div>
-          </div>
         </section>
 
         {/* Contact */}

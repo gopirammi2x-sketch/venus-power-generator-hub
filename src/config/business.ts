@@ -9,7 +9,7 @@ export const business = {
   email: "venuscok@gmail.com",
   address: "No. 32/2625, D-6, Salwa Square, Nandanath Kochako Rd, Thammanam Rd, NH Bypass, Chakkaraparambu, Thammanam, Kochi, Kerala 682032",
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=Venus%20Power%20Salwa%20Square%20Thammanam%20Kochi%20682032",
-  hours: "9:00 AM – 6:00 PM",
+  hours: "Mon – Sat, 9:00 AM – 6:00 PM",
   capacityRange: "15–3000 kVA",
   districts: ["Ernakulam", "Thrissur", "Palakkad"],
 };
