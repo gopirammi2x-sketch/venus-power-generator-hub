@@ -27,7 +27,7 @@ export function Showcase() {
         <div key={n} className={`absolute inset-0 transition-opacity duration-700 ${n === i ? "opacity-100" : "pointer-events-none opacity-0"}`} aria-hidden={n !== i}>
           <img src={s.img} alt={s.title} className="h-full w-full object-cover" loading={n === 0 ? "eager" : "lazy"} />
           <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/50 to-transparent" />
-          <div className="absolute inset-0 mx-auto flex max-w-7xl flex-col justify-end px-4 pb-12 text-charcoal-foreground md:justify-center md:pb-0">
+          <div className="absolute inset-0 mx-auto flex max-w-7xl flex-col justify-end px-14 pb-12 text-charcoal-foreground md:justify-center md:pb-0">
             <span className="self-start rounded-sm bg-primary px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-foreground">{s.tag}</span>
             <h2 className="mt-3 max-w-xl text-3xl font-bold uppercase md:text-5xl">{s.title}</h2>
             <p className="mt-2 max-w-md opacity-90">{s.text}</p>
