@@ -40,14 +40,8 @@ export function KeralaMap() {
         <text x={14} y={320} className="fill-muted-foreground text-[10px] italic" transform="rotate(-70 14 320)">Arabian Sea</text>
       </svg>
       <div>
-        <ul className="space-y-4">
-          {business.districts.map((d) => (
-            <li key={d} className="border-l-4 border-primary bg-card p-5 shadow-sm">
-              <p className="font-display text-2xl font-bold uppercase">{d}</p>
-              <p className="text-sm text-muted-foreground">Generator selection, quotations and installation coordination.</p>
-            </li>
-          ))}
-        </ul>
+        <p className="font-display text-3xl font-bold uppercase">Serving {business.districts.join(" · ")}</p>
+        <p className="mt-3 max-w-md text-muted-foreground">Businesses and institutions in the highlighted districts can contact us for generator selection, quotations and installation coordination.</p>
       </div>
     </div>
   );
