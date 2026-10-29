@@ -10,17 +10,21 @@ export const business = {
   address: "No. 32/2625, D-6, Salwa Square, Nandanath Kochako Rd, Thammanam Rd, NH Bypass, Chakkaraparambu, Thammanam, Kochi, Kerala 682032",
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=Venus%20Power%20Salwa%20Square%20Thammanam%20Kochi%20682032",
   hours: "Mon – Sat, 9:00 AM – 6:00 PM",
-  capacityRange: "15–3000 kVA",
+  capacityRange: "LHP 7.5–160 kVA · MHP 180–500 kVA · HHP above 650 kVA",
+  rating: "Prime rating only",
   districts: ["Ernakulam", "Thrissur", "Palakkad"],
 };
 
+export const generatorRanges = [
+  { category: "LHP", capacity: "7.5–160 kVA", minKva: 7.5, maxKva: 160, applications: "Shops, clinics, offices, restaurants, schools and residential buildings", customers: "Small businesses, healthcare practices, educational trusts and homeowners" },
+  { category: "MHP", capacity: "180–500 kVA", minKva: 180, maxKva: 500, applications: "Hotels, hospitals, apartment complexes, commercial buildings and manufacturing units", customers: "Hoteliers, healthcare groups, builders and industrial businesses" },
+  { category: "HHP", capacity: "Above 650 kVA", minKva: 650, maxKva: null, exclusiveMin: true, applications: "Large industrial facilities, IT campuses, data centres and critical infrastructure", customers: "Large industries, IT operators, utilities and infrastructure developers" },
+] as const;
+
+export const rangeOption = (range: (typeof generatorRanges)[number]) => `${range.category} — ${range.capacity} (prime)`;
+
 export const kvaOptions = [
-  "15–62.5 kVA",
-  "63–125 kVA",
-  "126–250 kVA",
-  "251–500 kVA",
-  "501–1000 kVA",
-  "1001–3000 kVA",
+  ...generatorRanges.map(rangeOption),
   "Not sure — need assessment",
 ];
 
