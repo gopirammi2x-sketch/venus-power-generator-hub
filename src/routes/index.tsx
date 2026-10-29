@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Phone, MessageCircle, Mail, MapPin, Clock, ClipboardList, Gauge, FileText, BookOpen, Truck, Factory, Hospital, Building2, Home, HardHat, Laptop, GraduationCap, Warehouse, ArrowRight, User } from "lucide-react";
+import { Menu, X, Phone, MessageCircle, Mail, MapPin, Clock, ClipboardList, Gauge, FileText, BookOpen, Truck, Factory, Hospital, Building2, Home, HardHat, Laptop, GraduationCap, Warehouse, ArrowRight } from "lucide-react";
 import gensetAsset from "@/assets/cummins-genset.jpeg.asset.json";
 import factory from "@/assets/ind-factory.jpg";
 import hospital from "@/assets/ind-hospital.jpg";
