@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Phone, MessageCircle, Mail, MapPin, Clock, ClipboardList, Gauge, FileText, BookOpen, Truck, Wrench, Factory, Hospital, Building2, Home, HardHat, Laptop, GraduationCap, Warehouse, ArrowRight, User } from "lucide-react";
+import { Menu, X, Phone, MessageCircle, Mail, MapPin, Clock, ClipboardList, Gauge, FileText, BookOpen, Truck, Factory, Hospital, Building2, Home, HardHat, Laptop, GraduationCap, Warehouse, ArrowRight } from "lucide-react";
 import gensetAsset from "@/assets/cummins-genset.jpeg.asset.json";
 import factory from "@/assets/ind-factory.jpg";
 import hospital from "@/assets/ind-hospital.jpg";
@@ -10,6 +10,8 @@ import apartment from "@/assets/ind-apartment.jpg";
 import itpark from "@/assets/ind-it.jpg";
 import education from "@/assets/ind-education.jpg";
 import warehouse from "@/assets/ind-warehouse.jpg";
+import mdPhoto from "@/assets/md-portrait.jpg";
+import logo from "@/assets/venus-logo.jpg";
 import { Showcase } from "@/components/site/Showcase";
 import { KeralaMap } from "@/components/site/KeralaMap";
 import { business, waLink } from "@/config/business";
@@ -33,7 +35,7 @@ export const Route = createFileRoute("/")({
 });
 
 const genset = gensetAsset.url;
-const nav: [string, string][] = [["Home", "#home"], ["About Us", "#about"], ["Generator Range", "#range"], ["Applications", "#applications"], ["Why Choose Us", "#why"], ["Contact", "#contact"]];
+const nav: [string, string][] = [["Home", "#home"], ["About Us", "#about"], ["Generator Range", "#range"], ["Applications", "#applications"], ["Why Choose Us", "#why"], ["Get a Quote", "#enquiry"]];
 const genericWa = waLink(`Hello ${business.name}, I'd like to enquire about a Cummins generator.`);
 
 const why = [
@@ -42,7 +44,6 @@ const why = [
   [FileText, "Transparent Quotations", "Clear, itemised quotations so you can compare options with confidence."],
   [BookOpen, "Product Specification Guidance", "Plain explanations of ratings, enclosures, controllers and compliance."],
   [Truck, "Delivery and Installation Coordination", "Coordination of supply, site readiness and installation support."],
-  [Wrench, "Warranty and After-Sales Support", "Support with warranty matters and service needs after commissioning."],
 ] as const;
 
 const range: [string, string, string][] = [
@@ -91,11 +92,8 @@ function Index() {
       <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
           <a href="#home" className="flex min-w-0 items-center gap-2.5">
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-sm bg-primary font-display text-2xl font-bold text-primary-foreground">V</span>
-            <span className="min-w-0 leading-tight">
-              <span className="block font-display text-2xl font-bold uppercase">{business.name}</span>
-              <span className="block truncate text-[11px] text-muted-foreground">{business.tagline}</span>
-            </span>
+            <img src={logo} alt={`${business.name} logo`} className="h-11 w-auto shrink-0" />
+            <span className="hidden min-w-0 text-[11px] leading-tight text-muted-foreground sm:block">{business.tagline}</span>
           </a>
           <nav className="hidden items-center gap-6 lg:flex" aria-label="Main">
             {nav.map(([l, h]) => <a key={h} href={h} className="text-sm font-medium hover:text-primary">{l}</a>)}
@@ -121,7 +119,7 @@ function Index() {
           <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-[260px_1fr]">
             <div className="text-center">
               <div className="mx-auto grid h-52 w-52 place-items-center overflow-hidden rounded-full border-4 border-primary bg-charcoal-foreground/10">
-                <User className="h-24 w-24 opacity-40" aria-hidden />
+                <img src={mdPhoto} alt={`Managing Director, ${business.name}`} className="h-full w-full object-cover" />
               </div>
               <p className="mt-4 font-display text-2xl font-bold uppercase">[MD's Name]</p>
               <p className="text-sm opacity-70">Managing Director, {business.name}</p>
@@ -245,35 +243,13 @@ function Index() {
           <div className="mt-10"><EnquiryForm prefillKva={kva} /></div>
         </section>
 
-        {/* Contact */}
-        <section id="contact" className="mx-auto max-w-7xl px-4 py-20">
-          <p className="eyebrow">Contact</p>
-          <h2 className="mt-3 text-4xl font-bold uppercase md:text-5xl">Talk to {business.name}</h2>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              [Phone, "Phone & WhatsApp", business.phoneDisplay],
-              [Mail, "Email", business.email],
-              [MapPin, "Office address", business.address || "[Address — to be added]"],
-              [Clock, "Business hours", business.hours || "[Hours — to be added]"],
-            ].map(([Icon, l, v]) => {
-              const I = Icon as typeof Phone;
-              return <div key={l as string} className="rounded-sm border border-border p-6"><I className="h-6 w-6 text-primary" /><p className="mt-3 text-xs uppercase tracking-wider text-muted-foreground">{l as string}</p><p className="mt-1 break-words font-semibold">{v as string}</p></div>;
-            })}
-          </div>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href={`tel:${business.phone}`} className="flex items-center gap-2 rounded-sm bg-primary px-6 py-3 font-semibold text-primary-foreground"><Phone className="h-4 w-4" />Call Now</a>
-            <a href={genericWa} target="_blank" rel="noopener" className="flex items-center gap-2 rounded-sm bg-whatsapp px-6 py-3 font-semibold text-whatsapp-foreground"><MessageCircle className="h-4 w-4" />WhatsApp</a>
-            <a href={`mailto:${business.email}`} className="flex items-center gap-2 rounded-sm border border-foreground px-6 py-3 font-semibold"><Mail className="h-4 w-4" />Email Us</a>
-            {business.mapsUrl && <a href={business.mapsUrl} target="_blank" rel="noopener" className="flex items-center gap-2 rounded-sm border border-foreground px-6 py-3 font-semibold"><MapPin className="h-4 w-4" />Get Directions</a>}
-          </div>
-        </section>
       </main>
 
       <footer className="bg-charcoal text-charcoal-foreground">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-3">
           <div><p className="font-display text-3xl font-bold uppercase">{business.name}</p><p className="mt-2 text-sm opacity-70">{business.tagline}. Diesel generators {business.capacityRange}.</p></div>
           <div><p className="eyebrow">Quick links</p><ul className="mt-3 space-y-2 text-sm opacity-80">{nav.map(([l, h]) => <li key={h}><a href={h} className="hover:text-primary">{l}</a></li>)}</ul></div>
-          <div><p className="eyebrow">Generator enquiry</p><ul className="mt-3 space-y-2 text-sm opacity-80">{range.map(([k]) => <li key={k}><button onClick={() => enquire(k)} className="hover:text-primary">{k} generators</button></li>)}</ul></div>
+          
           <div><p className="eyebrow">Service districts</p><ul className="mt-3 space-y-2 text-sm opacity-80">{business.districts.map((d) => <li key={d}>{d}, Kerala</li>)}</ul>
             <p className="mt-5 text-sm opacity-80">{business.phoneDisplay}<br />{business.email}</p></div>
         </div>
