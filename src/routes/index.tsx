@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Phone, MessageCircle, Mail, MapPin, Clock, ClipboardList, Gauge, FileText, BookOpen, Truck, Factory, Hospital, Building2, Home, HardHat, Laptop, GraduationCap, Warehouse, ArrowRight } from "lucide-react";
+import { Menu, X, Phone, MessageCircle, Mail, MapPin, Clock, ClipboardList, Gauge, FileText, BookOpen, Truck, Factory, Hospital, Building2, Home, HardHat, Laptop, GraduationCap, Warehouse, ArrowRight, Wrench } from "lucide-react";
 import gensetAsset from "@/assets/cummins-genset.jpeg.asset.json";
 import factory from "@/assets/ind-factory.jpg";
 import hospital from "@/assets/ind-hospital.jpg";
@@ -14,7 +14,8 @@ import mdPhoto from "@/assets/md-portrait.jpg";
 import logo from "@/assets/venus-logo.jpg";
 import { Showcase } from "@/components/site/Showcase";
 import { KeralaMap } from "@/components/site/KeralaMap";
-import { business, waLink } from "@/config/business";
+import { business, generatorRanges, rangeOption, waLink } from "@/config/business";
+import { Button } from "@/components/ui/button";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 
 const TITLE = "Cummins Diesel Generator Dealer | Ernakulam, Thrissur & Palakkad";
@@ -44,16 +45,8 @@ const why = [
   [FileText, "Transparent Quotations", "Clear, itemised quotations so you can compare options with confidence."],
   [BookOpen, "Product Specification Guidance", "Plain explanations of ratings, enclosures, controllers and compliance."],
   [Truck, "Delivery and Installation Coordination", "Coordination of supply, site readiness and installation support."],
+  [Wrench, "Product Support & After Market", "Product support and after market by Cummins authorized dealers."],
 ] as const;
-
-const range: [string, string, string][] = [
-  ["15–62.5 kVA", "Shops, clinics, small offices, villas, ATMs", "Retailers, doctors, small businesses, homeowners"],
-  ["63–125 kVA", "Restaurants, schools, workshops, mid-size offices", "SMEs, educational trusts, hospitality"],
-  ["126–250 kVA", "Hotels, hospitals, apartment complexes, light industry", "Builders, healthcare groups, hoteliers"],
-  ["251–500 kVA", "Malls, large commercial buildings, manufacturing units", "Developers, factories, retail chains"],
-  ["501–1000 kVA", "Heavy industry, large hospitals, IT campuses", "Industrial groups, IT parks, medical colleges"],
-  ["1001–3000 kVA", "Data centres, process plants, critical infrastructure", "Large industries, utilities, government projects"],
-];
 
 const industries = [
   [Factory, "Manufacturing & Industrial", "Keep production lines running through grid outages.", factory],
@@ -129,7 +122,7 @@ function Index() {
               <h2 className="mt-3 text-4xl font-bold uppercase md:text-5xl">Your Local Partner for Reliable Power</h2>
               <blockquote className="mt-6 space-y-4 border-l-4 border-primary pl-6 text-lg opacity-90">
                 <p>"At {business.name}, we are proud to be an authorized dealer of Cummins and Powerica diesel generators, serving businesses and institutions across Central Kerala."</p>
-                <p>"Every site is different. My team and I take the time to understand your facility, your operating loads and your backup needs, and then recommend the right generator from {business.capacityRange} — with clear quotations and coordinated supply and installation support."</p>
+                <p>"Every site is different. My team and I take the time to understand your facility, your operating loads and your backup needs, and then recommend the right generator across our ranges: {business.capacityRange}, all prime rated — with clear quotations and coordinated supply and installation support."</p>
                 <p>"Our promise is simple: dependable power, honest advice and support you can count on."</p>
               </blockquote>
             </div>
@@ -149,7 +142,7 @@ function Index() {
                 <a href={`tel:${business.phone}`} className="rounded-sm border-2 border-foreground px-6 py-3 font-display text-lg font-semibold uppercase tracking-wide hover:bg-foreground hover:text-background">Speak to Our Team</a>
                 <a href={genericWa} target="_blank" rel="noopener" className="flex items-center gap-2 rounded-sm bg-whatsapp px-6 py-3 font-display text-lg font-semibold uppercase tracking-wide text-whatsapp-foreground hover:brightness-110"><MessageCircle className="h-5 w-5" />WhatsApp</a>
               </div>
-              <p className="mt-6 flex items-center gap-2 text-sm font-medium"><MapPin className="h-4 w-4 text-primary" />Serving Ernakulam | Thrissur | Palakkad · {business.capacityRange}</p>
+              <p className="mt-6 flex items-start gap-2 text-sm font-medium"><MapPin className="h-4 w-4 shrink-0 text-primary" /><span>Serving Ernakulam | Thrissur | Palakkad<br />{business.capacityRange} · {business.rating}</span></p>
             </div>
             <div className="relative fade-up">
               <div className="absolute -inset-3 -z-10 translate-x-6 translate-y-6 bg-primary/10" />
@@ -177,18 +170,19 @@ function Index() {
         <section id="range" className="mx-auto max-w-7xl px-4 py-20">
           <p className="eyebrow">Generator range</p>
           <h2 className="mt-3 text-4xl font-bold uppercase md:text-5xl">Cummins Generator Range</h2>
-          <p className="mt-3 max-w-2xl text-muted-foreground">Indicative categories to help you browse. Exact models, ratings, emission compliance and availability are confirmed on enquiry.</p>
+          <p className="mt-3 font-semibold text-primary">All generators are prime rated only.</p>
+          <p className="mt-2 max-w-2xl text-muted-foreground">Likely applications and customer segments are indicative. Exact models, emission compliance and availability are confirmed on enquiry.</p>
           <div className="mt-10 grid items-start gap-8 lg:grid-cols-[2fr_3fr]">
             <img src={genset} alt="Cummins diesel generator set" loading="lazy" className="w-full rounded-sm object-cover shadow-lg lg:sticky lg:top-24" />
             <div className="divide-y divide-border overflow-hidden rounded-sm border border-border bg-card">
-              {range.map(([k, apps, seg]) => (
-                <div key={k} className="grid gap-3 p-5 sm:grid-cols-[150px_1fr_auto] sm:items-center">
-                  <h3 className="text-2xl font-bold text-primary">{k}</h3>
+              {generatorRanges.map((range) => (
+                <div key={range.category} className="grid gap-3 p-5 sm:grid-cols-[140px_1fr] sm:items-center">
+                  <div><p className="font-display text-3xl font-bold text-primary">{range.category}</p><h3 className="text-2xl font-bold">{range.capacity}</h3><p className="mt-1 text-xs text-muted-foreground">Prime rating</p></div>
                   <div className="text-sm">
-                    <p><span className="font-semibold">Applications:</span> <span className="text-muted-foreground">{apps}</span></p>
-                    <p className="mt-1"><span className="font-semibold">Customers:</span> <span className="text-muted-foreground">{seg}</span></p>
+                    <p><span className="font-semibold">Applications:</span> <span className="text-muted-foreground">{range.applications}</span></p>
+                    <p className="mt-1"><span className="font-semibold">Customers:</span> <span className="text-muted-foreground">{range.customers}</span></p>
+                    <Button variant="link" onClick={() => enquire(rangeOption(range))} className="mt-3 h-auto p-0 font-display font-semibold uppercase">Enquire <ArrowRight className="h-4 w-4" /></Button>
                   </div>
-                  <button onClick={() => enquire(k)} className="flex items-center gap-1 font-display font-semibold uppercase tracking-wide text-primary">Enquire <ArrowRight className="h-4 w-4" /></button>
                 </div>
               ))}
             </div>
@@ -247,7 +241,7 @@ function Index() {
 
       <footer className="bg-charcoal text-charcoal-foreground">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-3">
-          <div><p className="font-display text-3xl font-bold uppercase">{business.name}</p><p className="mt-2 text-sm opacity-70">{business.tagline}. Diesel generators {business.capacityRange}.</p></div>
+          <div><p className="font-display text-3xl font-bold uppercase">{business.name}</p><p className="mt-2 text-sm opacity-70">{business.tagline}. Diesel generators: {business.capacityRange}. {business.rating}.</p></div>
           <div><p className="eyebrow">Quick links</p><ul className="mt-3 space-y-2 text-sm opacity-80">{nav.map(([l, h]) => <li key={h}><a href={h} className="hover:text-primary">{l}</a></li>)}</ul></div>
           
           <div><p className="eyebrow">Service districts</p><ul className="mt-3 space-y-2 text-sm opacity-80">{business.districts.map((d) => <li key={d}>{d}, Kerala</li>)}</ul>

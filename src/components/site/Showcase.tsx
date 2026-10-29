@@ -4,10 +4,11 @@ import gensetAsset from "@/assets/cummins-genset.jpeg.asset.json";
 import factory from "@/assets/ind-factory.jpg";
 import hospital from "@/assets/ind-hospital.jpg";
 import commercial from "@/assets/ind-commercial.jpg";
+import { business } from "@/config/business";
 
 // Replace these with real installation / launch / display photos and captions.
 const slides = [
-  { tag: "Product display", title: "Cummins Diesel Generator Sets", text: "15–3000 kVA solutions for every business.", img: gensetAsset.url },
+  { tag: "Product display", title: "Cummins Diesel Generator Sets", text: `${business.capacityRange}. ${business.rating}.`, img: gensetAsset.url },
   { tag: "Latest installation", title: "[Installation — customer & site]", text: "Add your latest installation photo and details here.", img: factory },
   { tag: "New launch", title: "[New launch event]", text: "Add photos from product launches and events.", img: commercial },
   { tag: "Latest installation", title: "[Healthcare installation]", text: "Showcase standby power projects for hospitals.", img: hospital },
