@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Define generator categories centrally in `src/config/business.ts`; derive enquiry options and displayed ranges from them to keep prime ratings consistent.
+- Render the service map from locally stored geographic district boundary data, not a schematic outline or generated bitmap, to preserve accurate boundaries and crisp labels.
