@@ -14,6 +14,7 @@ import mdPhoto from "@/assets/md-portrait.jpg";
 import logo from "@/assets/venus-logo.jpg";
 import { Showcase } from "@/components/site/Showcase";
 import { KeralaMap } from "@/components/site/KeralaMap";
+import { Testimonials } from "@/components/site/Testimonials";
 import { business, generatorRanges, rangeOption, waLink } from "@/config/business";
 import { Button } from "@/components/ui/button";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
@@ -235,6 +236,8 @@ function Index() {
           <h2 className="mt-3 text-center text-4xl font-bold uppercase md:text-5xl">Request a Cummins Generator Quotation</h2>
           <div className="mt-10"><EnquiryForm prefillKva={kva} /></div>
         </section>
+
+        <Testimonials />
 
       </main>
 
