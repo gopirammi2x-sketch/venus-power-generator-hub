@@ -131,7 +131,7 @@ function Index() {
         </section>
 
         {/* Hero */}
-        <section id="home" className="border-b border-border">
+        <section id="home" className="overflow-hidden border-b border-border">
           <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 md:py-20 lg:grid-cols-2">
             <div className="fade-up">
               <p className="eyebrow">Authorized dealer · Cummins & Powerica</p>
