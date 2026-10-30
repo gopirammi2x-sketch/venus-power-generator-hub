@@ -114,7 +114,7 @@ function Index() {
               <div className="mx-auto grid h-52 w-52 place-items-center overflow-hidden rounded-full border-4 border-primary bg-charcoal-foreground/10">
                 <img src={mdPhoto} alt={`Managing Director, ${business.name}`} className="h-full w-full object-cover" />
               </div>
-              <p className="mt-4 font-display text-2xl font-bold uppercase">[MD's Name]</p>
+              <p className="mt-4 font-display text-2xl font-bold uppercase">Biju P.M</p>
               <p className="text-sm opacity-70">Managing Director, {business.name}</p>
             </div>
             <div>
@@ -226,7 +226,6 @@ function Index() {
                 </li>
               ))}
             </ol>
-            <a href="#enquiry" className="mt-12 inline-block rounded-sm bg-primary px-7 py-3 font-display text-lg font-semibold uppercase tracking-wide text-primary-foreground hover:brightness-110">Discuss Your Generator Requirement</a>
           </div>
         </section>
 
@@ -242,7 +241,7 @@ function Index() {
       <footer className="bg-charcoal text-charcoal-foreground">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-3">
           <div><p className="font-display text-3xl font-bold uppercase">{business.name}</p><p className="mt-2 text-sm opacity-70">{business.tagline}. Diesel generators: {business.capacityRange}. {business.rating}.</p></div>
-          <div><p className="eyebrow">Quick links</p><ul className="mt-3 space-y-2 text-sm opacity-80">{nav.map(([l, h]) => <li key={h}><a href={h} className="hover:text-primary">{l}</a></li>)}</ul></div>
+          <div><p className="eyebrow">Quick links</p><ul className="mt-3 space-y-2 text-sm opacity-80">{nav.filter(([, h]) => h !== "#enquiry").map(([l, h]) => <li key={h}><a href={h} className="hover:text-primary">{l}</a></li>)}</ul></div>
           
           <div><p className="eyebrow">Service districts</p><ul className="mt-3 space-y-2 text-sm opacity-80">{business.districts.map((d) => <li key={d}>{d}, Kerala</li>)}</ul>
             <p className="mt-5 text-sm opacity-80">{business.phoneDisplay}<br />{business.email}</p></div>
