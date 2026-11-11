@@ -11,7 +11,7 @@ import itpark from "@/assets/ind-it.jpg";
 import education from "@/assets/ind-education.jpg";
 import warehouse from "@/assets/ind-warehouse.jpg";
 import mdPhoto from "@/assets/md-portrait.jpg";
-import logo from "@/assets/venus-logo.jpg";
+import logo from "@/assets/venus-logo.png";
 import { Showcase } from "@/components/site/Showcase";
 import { KeralaMap } from "@/components/site/KeralaMap";
 import { Testimonials } from "@/components/site/Testimonials";
@@ -86,7 +86,7 @@ function Index() {
       <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
           <a href="#home" className="flex min-w-0 items-center gap-2.5">
-            <img src={logo} alt={`${business.name} logo`} className="h-11 w-auto shrink-0" />
+            <img src={logo} alt={`${business.name} logo`} className="h-12 w-auto shrink-0 rounded-sm ring-1 ring-black/10" />
             <span className="hidden min-w-0 text-[11px] leading-tight text-muted-foreground sm:block">{business.tagline}</span>
           </a>
           <nav className="hidden items-center gap-6 lg:flex" aria-label="Main">
